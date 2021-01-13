@@ -1,0 +1,28 @@
+prometheus_alertmanager_config:
+  - static_configs:
+    - targets:
+      - localhost:9093
+    scheme: http
+    timeout: 10s
+    api_version: v1
+prometheus_scrape_configs:
+  - job_name: prometheus
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - 'localhost:9090'
+  - job_name: elastic-search-CA-EU
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - '10.10.10.152:9114'
+alertmanager_receivers:
+  - name: slack
+    slack_configs:
+      - send_resolved: true
+        channel: '#devops_terraform'
+  - name: dba_email
+    email_configs:
+      - to: ziv.mitrani@gmail.com
+        headers:
+          'Subject': 'Alert Manager - EU PROD'              

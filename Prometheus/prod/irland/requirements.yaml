@@ -1,0 +1,7 @@
+# Install a role from the Ansible Galaxy
+# - src: cloudalchemy.prometheus
+# Install a role from GitHub
+- name: cloudalchemy.prometheus
+  src: https://github.com/cloudalchemy/ansible-prometheus
+- name: ansible-alertmanager
+  src: https://github.com/cloudalchemy/ansible-alertmanager
